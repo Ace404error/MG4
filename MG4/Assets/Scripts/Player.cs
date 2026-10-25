@@ -138,7 +138,18 @@ public class Player : MonoBehaviour
     // Feature 4 of the rubric should work after you finish all of the 3 methods
     //      in this file.
 
-    // private ??? CheckIfAdditionCorrect (??? ???)
+    private bool CheckIfAdditionCorrect(int playr)
+    //FOR PLAYER ANSWER PARAMETER: might have smth to do with accessing player components??
+    //either try creating new var to store players answer
+    //find way to access player answer (go over slides for this)
+    //or both
+    {
+        if (_number1 + _number2 == playr)
+        {
+            return true;
+        }
+        else return false;
+    }
 
     // STEP 3 -----------------------------------------------------------------
 
