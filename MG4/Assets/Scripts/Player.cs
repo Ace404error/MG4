@@ -1,5 +1,7 @@
 using System;
 using TMPro;
+using Unity.Multiplayer.Center.Common;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public enum EquationType
@@ -24,6 +26,8 @@ public class Player : MonoBehaviour
     private int _number1;
     private int _number2;
     private int _points;
+
+    //public int _ant;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -63,6 +67,8 @@ public class Player : MonoBehaviour
         //      Component.
         //
         // Feature 5 of the rubric should work after this.
+        _currentFood.GetComponent<FloatAnimation>().StopAnimation();
+        //solved! formatting = "gameObject.GetComponent"
 
 
         // STEP 6 -------------------------------------------------------------
@@ -81,15 +87,15 @@ public class Player : MonoBehaviour
             {
                 case EquationType.Add:
                     // UNCOMMENT AFTER STEP 3
-                    //correct = CheckIfAdditionCorrect(number);
+                    correct = CheckIfAdditionCorrect(number);
                     break;
                 case EquationType.Subtract:
                     // UNCOMMENT AFTER STEP 4
-                    //correct = CheckIfSubtractionCorrect(number);
+                    correct = CheckIfSubtractionCorrect(number);
                     break;
                 case EquationType.Multiply:
                     // UNCOMMENT AFTER STEP 5
-                    //correct = CheckIfMultiplicationCorrect(number);
+                    correct = CheckIfMultiplicationCorrect(number);
                     break;
             }
         }
@@ -138,18 +144,27 @@ public class Player : MonoBehaviour
     // Feature 4 of the rubric should work after you finish all of the 3 methods
     //      in this file.
 
-    private bool CheckIfAdditionCorrect(int playr)
+    private bool CheckIfAdditionCorrect(int playerAddNum)
     //FOR PLAYER ANSWER PARAMETER: might have smth to do with accessing player components??
     //either try creating new var to store players answer
     //find way to access player answer (go over slides for this)
     //or both
     {
-        if (_number1 + _number2 == playr)
+
+        int correctAdd = (_number1 + _number2);
+
+        if (playerAddNum == correctAdd)
         {
-            return true;
+            Debug.Log(true);
         }
-        else return false;
+        else Debug.Log(false);
+
+        return _correctUI;
     }
+    //SOLVED! parameter had to use "==" to equate to correctAdd
+    //Solved! if else statement had to have an arguement in brackets (Debug.Log)
+    //Solved! had to return _correctUI after if statement
+    //Q: why does this work?? Why don't we have to use the string var that stores the user's input?
 
     // STEP 3 -----------------------------------------------------------------
 
@@ -165,7 +180,19 @@ public class Player : MonoBehaviour
     // After you write this method, uncomment the line above that says
     //      "UNCOMMENT AFTER STEP 4".
 
-    // private ??? CheckIfSubtractionCorrect (??? ???)
+    private bool CheckIfSubtractionCorrect (int playerSubNum)
+    {
+
+        int correctSub = (_number1 - _number2);
+
+        if (playerSubNum == correctSub)
+        {
+            Debug.Log(true);
+        }
+        else Debug.Log(false);
+
+        return _correctUI;
+    }
 
     // STEP 4 -----------------------------------------------------------------
 
@@ -181,8 +208,19 @@ public class Player : MonoBehaviour
     // After you write this method, uncomment the line above that says
     //      "UNCOMMENT AFTER STEP 5".
 
-    // private ??? CheckIfMultiplicationCorrect (??? ???)
+    private bool CheckIfMultiplicationCorrect (int playerMultiNum)
+    {
 
+        int correctMulti = (_number1 * _number2);
+
+        if (playerMultiNum == correctMulti)
+        {
+            Debug.Log(true);
+        }
+        else Debug.Log(false);
+
+        return _correctUI;
+    }
     // STEP 5 -----------------------------------------------------------------
 
 }
