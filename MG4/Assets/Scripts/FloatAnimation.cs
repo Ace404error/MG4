@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FloatAnimation : MonoBehaviour
 {
-    [SerializeField] private float _moveSpeed = 3.0f;
+    [SerializeField] private float _moveSpeed = 2.0f;
     [SerializeField] private float _switchSpeed = 1.0f;
     
     private bool _up;
